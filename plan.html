@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+
+<html lang='en'>
+
+    <head>
+
+        <meta name="viewport" content="initial-scale=1, width=device-width">
+
+        <!-- http://getbootstrap.com/docs/4.1/ -->
+        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet">
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+
+        <link href="static/styles.css" rel="stylesheet">
+
+        <title>Plan a Rigid Heddle Weaving Project</title>
+
+    </head>
+
+<body>
+
+        <!-- http://getbootstrap.com/docs/4.1/components/navbar/ -->
+        <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+            <div class="navbar-brand mb-1 h1">Rigid Heddle Project Planner</div>
+        </nav>
+
+        <!-- http://getbootstrap.com/docs/4.1/layout/overview/#containers -->
+<main class="container-fluid p-5">
+
+<form action="/plan" method="post" id="dynamic_form">
+  <!-- yards of yarn for warp -->
+  <div class="form-row">
+      <div class="form-group">
+        <label for="warp_yardage">Yards of warp yarn:</label>
+        <div class="form-group form-check-inline">
+            <input autocomplete="off" id="warp_yardage" name="warp_yardage" type="number" placeholder="Warp yardage (in yards)" min="0">
+        </div>
+        <div class="form-check form-check-inline hide-for-print">
+          <input class="form-check-input" type="checkbox" name="constantValue" id="warpConstant" value="warp">
+          <label class="form-check-label" for="warpConstant">keep constant</label>
+        </div>
+      </div>
+    </div>
+
+  <!-- yards of yarn for weft -->
+  <div class="form-row">
+      <div class="form-group">
+        <label for="warp_yardage">Yards of weft yarn:</label>
+        <div class="form-group form-check-inline">
+            <input autocomplete="off" id="weft_yardage" name="weft_yardage" type="number" placeholder="Weft yardage (in yards)" min="0">
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="checkbox" name="constantValue" id="weftConstant" value="weft">
+          <label class="form-check-label" for="warpConstant">keep constant</label>
+        </div>
+    </div>
+  </div>
+
+  <div class="form-row">
+    <!--Reed size-->
+    <div class="form-group">
+        <label for="dpi">Reed size: </label>
+        <div class="form-group form-check-inline">
+          <select class="form-control" id="dpi" name="dpi">
+              <option disabled selected value="">Reed size</option>
+              <option value="2.5">2.5</option>
+              <option value="5">5</option>
+              <option value="7.5">7.5</option>
+              <option value="8">8</option>
+              <option value="10">10</option>
+              <option value='12'>12</option>
+              <option value="15">15</option>
+          </select>
+        </div>
+    </div>
+
+    <!-- Picks per inch -->
+    <div class="form-group">
+      <label for="ppi">Picks per inch: </label>
+      <div class="form-group form-check-inline">
+        <input autocomplete="off" class="form-group" id='ppi' name='ppi' type="number" placeholder='PPI' min="1" step="0.5">
+      </div>
+    </div>
+  </div>
+
+    <!-- Width of scarf -->
+  <div class="form-row">
+    <div class="form_group">
+      <label for="width">Woven width (inches):</label>
+      <div class="form-group form-check-inline">
+        <input autocomplete="off" id='width' name='width' type="number" placeholder='Width (in)' min="1" step="0.25">
+      </div>
+    </div>
+
+    <!-- Length of scarf -->
+    <div class="form_group">
+      <label for="length">Woven length (feet):</label>
+      <div class="form-group form-check-inline">
+        <input autocomplete="off" id="length" name="length" type="number" placeholder="Length (ft)" min="1" step="0.25">
+      </div>
+    </div>
+  </div>
+
+  <!--approx. loom waste-->
+  <div class="form-row">
+        <div class="form-group">
+          <label for="waste">Total loom waste (inches): </label>
+          <div class="form-group form-check-inline">
+            <input autocomplete="off" id="waste" name="waste" type="number" placeholder='Waste (in)' min="0" step=0.5>
+          </div>
+        </div>
+    </div>
+
+  <div class="form-row">
+      <!-- total ends -->
+    <div class="form-group">
+        <label for="ends">Total ends:</label>
+        <div class="form-group form-check-inline">
+          <input id="ends" name="ends" type="number" disabled>
+        </div>
+    </div>
+
+  <!-- total warp length -->
+    <div class="form-group">
+        <label for="total_warp">Total warping length:</label>
+        <div class="form-group form-check-inline">
+          <input id="total_warp" name="total_warp" type="text" disabled>
+        </div>
+    </div>
+  </div>
+
+</form>
+
+<div>
+    <input type="button" class="hide_for_print" onClick="window.print()" value="Print this page">
+    <input type="button" class="hide_for_print" name="reset_form" id="reset_form" value="Start Over">
+</div>
+
+<script src="static/script.js"></script>
+<script>
+    document.querySelector("#reset_form").onclick = function() {
+        document.getElementById("dynamic_form").reset();
+    }
+</script>
+</main>
+</body>

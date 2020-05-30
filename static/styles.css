@@ -1,0 +1,21 @@
+.form-control {
+    display: inline-block;
+    width: initial;
+}
+
+.hidden_item {
+    display: none;
+}
+
+.alert{
+    display: none;
+}
+
+@media print {
+    .hide_for_print {
+        display: none;
+    }
+    body {
+        font-size: 24px;
+    }
+}
